@@ -1,0 +1,288 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "i4digital - Document API",
+        "description": "Documentación de api",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/getUsuarios": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+        "/getPublicaciones": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/getPublicaciones"
+                        }
+                    }
+                }
+            }
+        },
+        "/getFotos": {
+            "parameters": [
+                {
+                    "name": "usuario",
+                    "in": "body",
+                    "required": true,
+                    "description": "ID del usuario a consultar",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Fotos"
+                        }
+                    }
+                }
+            }
+        },
+        "/getPeticiones": {
+            "post": {
+                "tags": [
+                    "Servicios"
+                ],
+                "description": "Peticiones disponibles",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtener Peticiones",
+                        "schema": {
+                            "$ref": "#/definitions/getPeticiones"
+                        }
+                    }
+                }
+            }
+        },
+        "/deletePeticion": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "body",
+                    "required": true,
+                    "description": "ID de la peticion a eliminar",
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "summary": "",
+                "tags": [
+                    "Servicios"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Peticion a eliminar",
+                        "schema": {
+                            "$ref": "#/definitions/deletePeticiones"
+                        }
+                    }
+                }
+            }
+        },
+        "/updatePeticion": {
+            "put": {
+                "summary": "",
+                "tags": [
+                    "Servicios"
+                ],
+                "parameters": [
+                    {
+                        "name": "peticion",
+                        "in": "body",
+                        "description": "Información a modificar",
+                        "schema": {
+                            "$ref": "#/definitions/getPeticiones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actualizar peticiones",
+                        "schema": {
+                            "$ref": "#/definitions/updatePeticiones"
+                        }
+                    }
+                }
+            }
+        },
+        "/exportPeticion": {
+            "get": {
+                "summary": "",
+                "tags": [
+                    "Servicios"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exportar peticiones registradas",
+                        "schema": {
+                            "$ref": "#/definitions/exportPeticiones"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "email",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "number",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "username": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "object"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "object"
+                }
+            }
+        },
+        "Fotos": {
+            "required": [
+                "albumId",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "number",
+                    "uniqueItems": true
+                },
+                "albumId": {
+                    "type": "number",
+                    "uniqueItems": true
+                },
+                "title": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "thumbnailUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "getPeticiones": {
+            "properties": {
+                "fecha": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "response": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "metodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "deletePeticiones": {
+            "properties": {
+                "exitoso": {
+                    "type": "boolean",
+                    "uniqueItems": true
+                },
+                "mensaje": {
+                    "type": "string",
+                    "uniqueItems": true
+                }
+            }
+        },
+        "updatePeticiones": {
+            "properties": {
+                "exitoso": {
+                    "type": "boolean",
+                    "uniqueItems": true
+                },
+                "mensaje": {
+                    "type": "string",
+                    "uniqueItems": true
+                }
+            }
+        },
+        "exportPeticiones": {
+            "properties": {
+                "exitoso": {
+                    "type": "boolean",
+                    "uniqueItems": true
+                },
+                "mensaje": {
+                    "type": "string",
+                    "uniqueItems": true
+                }
+            }
+        },
+        "getPublicaciones": {
+            "properties": {
+                "lPubliaciones": {
+                    "type": "array",
+                    "uniqueItems": true
+                }
+            }
+        }
+    }
+}
