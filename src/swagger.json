@@ -63,7 +63,7 @@
                     "type": "string"
                 }
             ],
-            "get": {
+            "post": {
                 "tags": [
                     "Servicios"
                 ],
